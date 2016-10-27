@@ -1,0 +1,21 @@
+resolv-file=/etc/resolv.dnsmasq.conf
+strict-order
+listen-address=172.18.230.250
+no-hosts
+
+conf-dir=/etc/dnsmasq.d
+log-queries
+log-facility=/var/log/dnsmasq.log
+
+addn-hosts = /var/lib/cobbler/cobbler_hosts
+
+dhcp-range=172.18.230.5,172.18.230.20
+dhcp-option=3,$next_server
+dhcp-lease-max=1000
+dhcp-authoritative
+dhcp-boot=pxelinux.0
+dhcp-boot=net:normalarch,pxelinux.0
+dhcp-boot=net:ia64,$elilo
+
+$insert_cobbler_system_definitions
+
